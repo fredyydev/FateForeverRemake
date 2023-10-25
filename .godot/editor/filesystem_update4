@@ -1,0 +1,4 @@
+res://scenes/levels/debug_level.tscn
+res://script_templates/Node/state_template.gd
+res://scenes/player/player.tscn
+res://scripts/player/player.gd

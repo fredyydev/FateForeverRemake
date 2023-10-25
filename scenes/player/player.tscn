@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://cobeunec838cr"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_le4hm"]
+[ext_resource type="Texture2D" uid="uid://buku51740ruym" path="res://sprites/player/fate_guy.png" id="1_ulrh3"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="3_wr5we"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oxm6e"]
+radius = 20.025
+
+[sub_resource type="GDScript" id="GDScript_1n5ck"]
+resource_name = "Idle"
+script/source = "#meta-default: false
+extends State
+
+@onready var player := owner as Player
+
+func on_enter(_metadata: Dictionary):
+	pass
+
+
+func on_exit():
+	pass
+
+
+func on_update(_delta):
+	player.look_at_mouse()
+	player.move_player(2)
+	if player.is_moving():
+		state_machine.transition_to(\"Run\")
+
+
+"
+
+[sub_resource type="GDScript" id="GDScript_sgcgp"]
+resource_name = "Run"
+script/source = "#meta-default: false
+extends State
+
+@onready var player := owner as Player
+@export var movement_speed := 10.0
+
+func on_enter(_metadata: Dictionary):
+	pass
+
+
+func on_exit():
+	pass
+
+
+func on_physics_update(_delta):
+	player.move_player(movement_speed * 10)
+
+
+func on_update(_delta):
+	player.look_at_mouse()
+	if !player.is_moving():
+		state_machine.transition_to(\"Idle\")
+	if Input.is_action_just_pressed(\"dash\") and player.can_dash:
+		state_machine.transition_to(\"Dash\")
+"
+
+[sub_resource type="GDScript" id="GDScript_coucq"]
+resource_name = "Dash"
+script/source = "extends State
+
+@onready var player := owner as Player
+@export var dash_speed := 50.0
+##Dash duration in seconds.
+@export var dash_duration := 0.2
+##Cooldown duration in seconds.
+@export var cooldown_duration := 0.5
+
+
+func on_enter(_metadata: Dictionary):
+	#create a timer so we can leave this state in time
+	await get_tree().create_timer(dash_duration).timeout
+	state_machine.transition_to(\"Idle\")
+
+
+func on_exit():
+	player.can_dash = false
+	await get_tree().create_timer(cooldown_duration).timeout
+	player.can_dash = true
+
+
+func on_physics_update(_delta):
+	player.move_player(dash_speed * 10)
+
+
+func on_update(_delta):
+	player.look_at_mouse()
+"
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_le4hm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.335, 1.335)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 3.1
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+editor_draw_drag_margin = true
+
+[node name="FateGuy" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_ulrh3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oxm6e")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_wr5we")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_1n5ck")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_sgcgp")
+movement_speed = 20.0
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_coucq")
+dash_speed = 100.0
