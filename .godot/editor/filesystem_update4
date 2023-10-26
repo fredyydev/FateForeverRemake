@@ -1,4 +1,5 @@
-res://scenes/levels/debug_level.tscn
-res://script_templates/Node/state_template.gd
+res://scenes/components/health_component.tscn
+res://scripts/components/health_component.gd
 res://scenes/player/player.tscn
-res://scripts/player/player.gd
+res://scenes/components/hurt_box.tscn
+res://scripts/components/hurt_box.gd
