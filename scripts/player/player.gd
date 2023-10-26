@@ -16,3 +16,6 @@ func is_moving() -> bool:
 ## Looks at mouse. Created because some states may not want this beaviour.
 func look_at_mouse() -> void:
 	look_at(get_global_mouse_position())
+
+func _process(delta):
+	PlayerGlobals.player_position = self.global_position

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cobeunec838cr"]
+[gd_scene load_steps=10 format=3 uid="uid://cobeunec838cr"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_le4hm"]
 [ext_resource type="Texture2D" uid="uid://buku51740ruym" path="res://sprites/player/fate_guy.png" id="1_ulrh3"]
 [ext_resource type="PackedScene" uid="uid://ca8didm11bv7q" path="res://scenes/components/health_component.tscn" id="2_6yuft"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="3_wr5we"]
+[ext_resource type="PackedScene" uid="uid://bis7r3povf2jf" path="res://scenes/components/hurt_box.tscn" id="4_fcrdt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxm6e"]
 radius = 20.025
@@ -93,6 +94,8 @@ func on_update(_delta):
 "
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_le4hm")
 
@@ -118,6 +121,11 @@ texture = ExtResource("1_ulrh3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oxm6e")
 
+[node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_fcrdt")]
+collision_layer = 8
+collision_mask = 16
+health_component = NodePath("../HealthComponent")
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_wr5we")
 initial_state = NodePath("Idle")
@@ -132,3 +140,5 @@ movement_speed = 20.0
 [node name="Dash" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_coucq")
 dash_speed = 100.0
+
+[editable path="HurtBox"]
