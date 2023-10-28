@@ -1,13 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://cobeunec838cr"]
+[gd_scene load_steps=13 format=3 uid="uid://cobeunec838cr"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_le4hm"]
 [ext_resource type="Texture2D" uid="uid://buku51740ruym" path="res://sprites/player/fate_guy.png" id="1_ulrh3"]
 [ext_resource type="PackedScene" uid="uid://ca8didm11bv7q" path="res://scenes/components/health_component.tscn" id="2_6yuft"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="3_wr5we"]
-[ext_resource type="PackedScene" uid="uid://bis7r3povf2jf" path="res://scenes/components/hurt_box.tscn" id="4_fcrdt"]
+[ext_resource type="Script" path="res://scripts/player/weapon_manager.gd" id="4_53sb2"]
+[ext_resource type="PackedScene" uid="uid://shec5lv4pnrf" path="res://scenes/components/hurt_box.tscn" id="4_fcrdt"]
+[ext_resource type="PackedScene" uid="uid://b7urnipg2vxf1" path="res://scenes/weapons/shotgun.tscn" id="6_o3du6"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oxm6e"]
-radius = 20.025
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tygh"]
+size = Vector2(20, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayi0w"]
+size = Vector2(20, 49)
 
 [sub_resource type="GDScript" id="GDScript_1n5ck"]
 resource_name = "Idle"
@@ -99,7 +104,19 @@ collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_le4hm")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7tygh")
+
 [node name="HealthComponent" parent="." instance=ExtResource("2_6yuft")]
+
+[node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_fcrdt")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ayi0w")
+debug_color = Color(0.992157, 0.0745098, 0, 0.419608)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.335, 1.335)
@@ -118,13 +135,11 @@ editor_draw_drag_margin = true
 scale = Vector2(3, 3)
 texture = ExtResource("1_ulrh3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_oxm6e")
+[node name="WeaponManager" type="Node2D" parent="."]
+script = ExtResource("4_53sb2")
 
-[node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_fcrdt")]
-collision_layer = 8
-collision_mask = 16
-health_component = NodePath("../HealthComponent")
+[node name="Shotgun" parent="WeaponManager" instance=ExtResource("6_o3du6")]
+position = Vector2(38.33, 0)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_wr5we")
@@ -140,5 +155,3 @@ movement_speed = 20.0
 [node name="Dash" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_coucq")
 dash_speed = 100.0
-
-[editable path="HurtBox"]

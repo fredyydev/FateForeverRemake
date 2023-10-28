@@ -4,6 +4,7 @@ class_name HurtBox
 
 @export var health_component: HealthComponent
 
-func _on_body_entered(body):
-	health_component.take_damage(body.damage)
+func _on_area_entered(area):
+	if area is DamagerComponent:
+		health_component.take_damage(area.damage)
 

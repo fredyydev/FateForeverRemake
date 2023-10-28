@@ -9,7 +9,7 @@ signal health_reached_zero
 signal damaged
 signal healed
 
-func _process(delta):
+func _process(_delta):
 	#Makes sure health never goes over max.
 	if current_health > max_health:
 		current_health = max_health

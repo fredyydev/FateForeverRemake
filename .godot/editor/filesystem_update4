@@ -1,8 +1,7 @@
-res://scenes/components/health_component.tscn
-res://scripts/components/health_component.gd
-res://scenes/player/player.tscn
-res://scenes/components/hurt_box.tscn
-res://scripts/components/hurt_box.gd
-res://scripts/autoload/player_globals.gd
-res://scripts/player/player.gd
 res://scenes/levels/debug_level.tscn
+res://scenes/player/player.tscn
+res://scenes/components/health_component.tscn
+res://scenes/weapons/shotgun.tscn
+res://scenes/components/hurt_box.tscn
+res://scenes/weapons/bullets/shotgun_pellet.tscn
+res://scenes/components/damager_component.tscn

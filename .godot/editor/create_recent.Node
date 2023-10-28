@@ -1,8 +1,12 @@
+Timer
 CollisionShape2D
+Node2D
 Area2D
+Sprite2D
+CharacterBody2D
+Marker2D
 Node
 Camera2D
 State
 StateMachine
-CharacterBody2D
 AnimationPlayer

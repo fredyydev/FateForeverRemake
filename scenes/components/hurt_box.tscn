@@ -1,14 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bis7r3povf2jf"]
+[gd_scene load_steps=2 format=3 uid="uid://shec5lv4pnrf"]
 
 [ext_resource type="Script" path="res://scripts/components/hurt_box.gd" id="1_0chqs"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_85lx2"]
-radius = 25.1794
-
 [node name="HurtBox" type="Area2D"]
+collision_layer = 64
+collision_mask = 64
 script = ExtResource("1_0chqs")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_85lx2")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
