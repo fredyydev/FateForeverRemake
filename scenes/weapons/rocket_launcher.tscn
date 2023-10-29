@@ -20,5 +20,4 @@ position = Vector2(34.265, 0)
 gizmo_extents = 14.5
 
 [node name="FireRate" type="Timer" parent="."]
-wait_time = 0.7
 one_shot = true

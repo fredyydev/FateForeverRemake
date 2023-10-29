@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1p0swcvnjww8"]
+[gd_scene load_steps=6 format=3 uid="uid://b1p0swcvnjww8"]
 
 [ext_resource type="Script" path="res://scripts/weapons/bullets/shotgun_pellet.gd" id="1_2p8d7"]
 [ext_resource type="Texture2D" uid="uid://c5jovxmppyecs" path="res://sprites/weapons/bullets/pellet_sprite.png" id="1_vxuat"]
+[ext_resource type="PackedScene" uid="uid://bkf4oqcrm8n6" path="res://scenes/components/trail.tscn" id="2_8c7yd"]
 [ext_resource type="PackedScene" uid="uid://cym6sqiwdcxpw" path="res://scenes/components/damager_component.tscn" id="2_27h88"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f4hpi"]
@@ -10,7 +11,10 @@ radius = 2.82843
 [node name="ShotgunPellet" type="Node2D"]
 script = ExtResource("1_2p8d7")
 
+[node name="Trail" parent="." instance=ExtResource("2_8c7yd")]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_vxuat")
 

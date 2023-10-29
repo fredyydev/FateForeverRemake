@@ -62,7 +62,6 @@ script = SubResource("GDScript_lgjwy")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Icon3/HurtBox"]
-scale = Vector2(1, 1)
 polygon = PackedVector2Array(64, -59.6, 64, 59, 59.6, 64, -59, 64, -64, 59.6, -64, -59.6, -59, -63.9, 59, -64)
 
 [node name="HealthComponent" parent="Icon3" instance=ExtResource("4_3vk3r")]

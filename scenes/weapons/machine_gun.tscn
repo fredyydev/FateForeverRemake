@@ -13,7 +13,7 @@ fire_rate = NodePath("FireRate")
 texture = ExtResource("2_aw0ok")
 
 [node name="BulletSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(27.545, 0)
+position = Vector2(28.115, 0)
 gizmo_extents = 14.5
 
 [node name="FireRate" type="Timer" parent="."]

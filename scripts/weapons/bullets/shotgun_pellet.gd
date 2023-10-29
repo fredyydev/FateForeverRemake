@@ -3,8 +3,8 @@ class_name ShotgunPellet
 
 
 var speed := 1000.0
-@export var max_speed := 1300.0
-@export var min_speed := 1000.0
+@export var max_speed := 1800.0
+@export var min_speed := 1500.0
 @export var damage := 10.0
 
 func _ready():
