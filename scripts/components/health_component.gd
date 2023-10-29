@@ -2,9 +2,9 @@ extends Node
 class_name HealthComponent
 
 @export var max_health := 100.0
-var current_health := max_health
+@onready var current_health := max_health
 
-signal health_changed
+signal health_changed(current_value)
 signal health_reached_zero
 signal damaged
 signal healed
@@ -21,10 +21,10 @@ func take_damage(amount: float) -> void:
 	current_health -= amount
 	if current_health <= 0:
 		emit_signal("health_reached_zero")
-	emit_signal("health_changed")
+	emit_signal("health_changed", current_health)
 	emit_signal("damaged")
 
 func heal(amount: float) -> void:
 	current_health += amount
-	emit_signal("health_changed")
+	emit_signal("health_changed", current_health)
 	emit_signal("healed")

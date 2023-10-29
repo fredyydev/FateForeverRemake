@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/weapons/bullets/shotgun_pellet.gd" id="1_2p8d7"]
 [ext_resource type="Texture2D" uid="uid://c5jovxmppyecs" path="res://sprites/weapons/bullets/pellet_sprite.png" id="1_vxuat"]
-[ext_resource type="PackedScene" uid="uid://bkf4oqcrm8n6" path="res://scenes/components/trail.tscn" id="2_8c7yd"]
+[ext_resource type="PackedScene" uid="uid://bkf4oqcrm8n6" path="res://scenes/vfx/trail.tscn" id="2_8c7yd"]
 [ext_resource type="PackedScene" uid="uid://cym6sqiwdcxpw" path="res://scenes/components/damager_component.tscn" id="2_27h88"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f4hpi"]

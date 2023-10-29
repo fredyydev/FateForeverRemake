@@ -8,3 +8,5 @@ res://scenes/weapons/bullets/shotgun_pellet.tscn
 res://scripts/vfx/trail.gd
 res://scripts/weapons/bullets/shotgun_pellet.gd
 res://scenes/components/trail.tscn
+res://scripts/player/player.gd
+res://scripts/components/health_component.gd

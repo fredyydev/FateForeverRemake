@@ -1,3 +1,9 @@
+Label
+AspectRatioContainer
+TextureProgressBar
+ProgressBar
+Control
+CanvasLayer
 Timer
 Line2D
 AnimationPlayer

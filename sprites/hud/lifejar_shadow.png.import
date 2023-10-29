@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buku51740ruym"
-path="res://.godot/imported/fate_guy.png-13de74bf76125028df6668f3b9cb5e50.ctex"
+uid="uid://c7f7v8qf8wdtp"
+path="res://.godot/imported/lifejar_shadow.png-40d24789a6eb84c04eb89feb8c1193e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player/fate_guy.png"
-dest_files=["res://.godot/imported/fate_guy.png-13de74bf76125028df6668f3b9cb5e50.ctex"]
+source_file="res://sprites/hud/lifejar_shadow.png"
+dest_files=["res://.godot/imported/lifejar_shadow.png-40d24789a6eb84c04eb89feb8c1193e1.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

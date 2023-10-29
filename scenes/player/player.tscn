@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cobeunec838cr"]
+[gd_scene load_steps=21 format=3 uid="uid://cobeunec838cr"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_le4hm"]
 [ext_resource type="Texture2D" uid="uid://buku51740ruym" path="res://sprites/player/fate_guy.png" id="1_ulrh3"]
@@ -10,12 +10,22 @@
 [ext_resource type="PackedScene" uid="uid://dpvqochu457vh" path="res://scenes/weapons/machine_gun.tscn" id="7_0lh1x"]
 [ext_resource type="PackedScene" uid="uid://nw8g0vofwvpg" path="res://scenes/weapons/rocket_launcher.tscn" id="8_gi2it"]
 [ext_resource type="PackedScene" uid="uid://v2wwgpy1gyyb" path="res://scenes/weapons/super_shotgun.tscn" id="9_wpreq"]
+[ext_resource type="Texture2D" uid="uid://c7f7v8qf8wdtp" path="res://sprites/hud/lifejar_shadow.png" id="10_4e1hm"]
+[ext_resource type="Texture2D" uid="uid://cq8j7a7rn4lig" path="res://sprites/hud/lifejar_container.png" id="10_jh1s5"]
+[ext_resource type="Texture2D" uid="uid://faic3vmag0id" path="res://sprites/hud/lifejar_blood.png" id="11_alx0b"]
+[ext_resource type="FontFile" uid="uid://bif02s2k5by20" path="res://fonts/Retro Gaming.ttf" id="13_agpqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tygh"]
 size = Vector2(20, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ayi0w"]
 size = Vector2(20, 49)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7orc6"]
+font = ExtResource("13_agpqo")
+shadow_size = 3
+shadow_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+shadow_offset = Vector2(-1.245, 1)
 
 [sub_resource type="GDScript" id="GDScript_1n5ck"]
 resource_name = "Idle"
@@ -101,17 +111,20 @@ func on_update(_delta):
 	player.look_at_mouse()
 "
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("lifebar", "lifebar_label")]
 collision_layer = 8
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_le4hm")
+lifebar = NodePath("HUD/Lifebar")
+lifebar_label = NodePath("HUD/Lifebar/Label")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_7tygh")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_6yuft")]
+max_health = 150.0
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_fcrdt")]
 health_component = NodePath("../HealthComponent")
@@ -153,17 +166,58 @@ position = Vector2(48.61, 0)
 [node name="SuperShotgun" parent="WeaponManager" instance=ExtResource("9_wpreq")]
 position = Vector2(39.865, 0)
 
-[node name="MovementState" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Lifebar" type="TextureProgressBar" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -102.0
+offset_right = 18.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+fill_mode = 3
+texture_under = ExtResource("10_4e1hm")
+texture_over = ExtResource("10_jh1s5")
+texture_progress = ExtResource("11_alx0b")
+
+[node name="Label" type="Label" parent="HUD/Lifebar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -13.0
+offset_right = 20.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "000"
+label_settings = SubResource("LabelSettings_7orc6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_wr5we")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="MovementState"]
+[node name="Idle" type="Node" parent="MovementStateMachine"]
 script = SubResource("GDScript_1n5ck")
 
-[node name="Run" type="Node" parent="MovementState"]
+[node name="Run" type="Node" parent="MovementStateMachine"]
 script = SubResource("GDScript_sgcgp")
 movement_speed = 20.0
 
-[node name="Dash" type="Node" parent="MovementState"]
+[node name="Dash" type="Node" parent="MovementStateMachine"]
 script = SubResource("GDScript_coucq")
 dash_speed = 100.0
+
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
+[connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
