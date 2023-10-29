@@ -8,3 +8,4 @@ func _on_area_entered(area):
 	if area is DamagerComponent:
 		health_component.take_damage(area.damage)
 
+

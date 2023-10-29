@@ -1,0 +1,170 @@
+[gd_scene load_steps=14 format=3 uid="uid://b07uqhly42odu"]
+
+[ext_resource type="Script" path="res://scripts/weapons/bullets/rocket.gd" id="1_xsdpk"]
+[ext_resource type="Texture2D" uid="uid://b5a4s0ktdiwbe" path="res://sprites/weapons/bullets/rocket_spritesheet.png" id="2_4kqjy"]
+[ext_resource type="PackedScene" uid="uid://cym6sqiwdcxpw" path="res://scenes/components/damager_component.tscn" id="3_gpnsa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy1kv"]
+atlas = ExtResource("2_4kqjy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8duy"]
+atlas = ExtResource("2_4kqjy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kxf8"]
+atlas = ExtResource("2_4kqjy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57es5"]
+atlas = ExtResource("2_4kqjy")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sog04"]
+atlas = ExtResource("2_4kqjy")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwhsq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy1kv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8duy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kxf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57es5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sog04")
+}],
+"loop": true,
+"name": &"default",
+"speed": 50.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c4bqt"]
+radius = 2.0
+height = 6.0
+
+[sub_resource type="Animation" id="Animation_07rq3"]
+resource_name = "explode"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(15, 15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamagerComponent:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(98, 98)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_evao8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamagerComponent:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14.04, 14.04)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.686, 2.686)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8koig"]
+_data = {
+"RESET": SubResource("Animation_evao8"),
+"explode": SubResource("Animation_07rq3")
+}
+
+[node name="Rocket" type="Node2D"]
+scale = Vector2(0.23, 0.23)
+script = ExtResource("1_xsdpk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.686, 2.686)
+sprite_frames = SubResource("SpriteFrames_mwhsq")
+autoplay = "default"
+frame_progress = 0.666663
+
+[node name="DamagerComponent" parent="." instance=ExtResource("3_gpnsa")]
+scale = Vector2(14.04, 14.04)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerComponent"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_c4bqt")
+
+[node name="SelfDestructTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8koig")
+}
+
+[connection signal="collided_with_hitbox" from="DamagerComponent" to="." method="_on_damager_component_collided_with_hitbox"]
+[connection signal="collided_with_object" from="DamagerComponent" to="." method="_on_damager_component_collided_with_object"]
+[connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]

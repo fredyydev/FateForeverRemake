@@ -1,9 +1,9 @@
 extends Node2D
-class_name LightRound
+class_name Rocket
 
 
-var speed := 1000.0
-@export var damage := 12.0
+@export var speed := 2000.0
+@export var damage := 50.0
 
 func _ready():
 	$DamagerComponent.damage = damage
@@ -17,9 +17,11 @@ func _on_self_destruct_timer_timeout():
 
 
 func _on_damager_component_collided_with_hitbox():
-	queue_free()
+	if not $AnimationPlayer.is_playing():
+		$AnimationPlayer.play("explode")
 
 
 func _on_damager_component_collided_with_object():
-	queue_free()
+	if not $AnimationPlayer.is_playing():
+		$AnimationPlayer.play("explode")
 

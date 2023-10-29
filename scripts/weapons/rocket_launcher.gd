@@ -1,11 +1,9 @@
 extends Node2D
-class_name MachineGun
+class_name RocketLauncher
 
 
 @export var bullet_scene: PackedScene
 @export var fire_rate: Timer
-@export var max_bullet_angle := 5.0
-@export var min_bullet_angle := -5.0
 
 signal fired
 
@@ -19,9 +17,8 @@ func shoot():
 	fire_rate.start()
 	
 	rng.randomize()
-	var desired_angle = rng.randf_range(min_bullet_angle, max_bullet_angle)
 	
 	var new_bullet = bullet_scene.instantiate() as Node2D
 	new_bullet.position = $BulletSpawnPoint.global_position
-	new_bullet.rotation_degrees = $BulletSpawnPoint.global_rotation_degrees + desired_angle
+	new_bullet.rotation_degrees = $BulletSpawnPoint.global_rotation_degrees 
 	get_tree().current_scene.add_child(new_bullet)

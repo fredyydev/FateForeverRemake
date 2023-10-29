@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cobeunec838cr"]
+[gd_scene load_steps=16 format=3 uid="uid://cobeunec838cr"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_le4hm"]
 [ext_resource type="Texture2D" uid="uid://buku51740ruym" path="res://sprites/player/fate_guy.png" id="1_ulrh3"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://shec5lv4pnrf" path="res://scenes/components/hurt_box.tscn" id="4_fcrdt"]
 [ext_resource type="PackedScene" uid="uid://b7urnipg2vxf1" path="res://scenes/weapons/shotgun.tscn" id="6_o3du6"]
 [ext_resource type="PackedScene" uid="uid://dpvqochu457vh" path="res://scenes/weapons/machine_gun.tscn" id="7_0lh1x"]
+[ext_resource type="PackedScene" uid="uid://nw8g0vofwvpg" path="res://scenes/weapons/rocket_launcher.tscn" id="8_gi2it"]
+[ext_resource type="PackedScene" uid="uid://v2wwgpy1gyyb" path="res://scenes/weapons/super_shotgun.tscn" id="9_wpreq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tygh"]
 size = Vector2(20, 49)
@@ -145,17 +147,23 @@ position = Vector2(38.33, 0)
 [node name="MachineGun" parent="WeaponManager" instance=ExtResource("7_0lh1x")]
 position = Vector2(41.775, 0)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="RocketLauncher" parent="WeaponManager" instance=ExtResource("8_gi2it")]
+position = Vector2(48.61, 0)
+
+[node name="Shotgun2" parent="WeaponManager" instance=ExtResource("9_wpreq")]
+position = Vector2(43.935, 0)
+
+[node name="MovementState" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_wr5we")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="MovementState"]
 script = SubResource("GDScript_1n5ck")
 
-[node name="Run" type="Node" parent="StateMachine"]
+[node name="Run" type="Node" parent="MovementState"]
 script = SubResource("GDScript_sgcgp")
 movement_speed = 20.0
 
-[node name="Dash" type="Node" parent="StateMachine"]
+[node name="Dash" type="Node" parent="MovementState"]
 script = SubResource("GDScript_coucq")
 dash_speed = 100.0

@@ -12,6 +12,13 @@ var current_weapon = 0
 func _ready():
 	switch_weapon_to(current_weapon)
 
+func _input(event):
+	#Switch weapon via numkeys
+	if event is InputEventKey:
+		var desired_weapon = event.as_text() as int
+		if desired_weapon != 0: 
+			switch_weapon_to(desired_weapon - 1)
+
 func _process(_delta):
 	if Input.is_action_just_pressed("next_weapon"):
 		switch_to_next()
@@ -23,6 +30,8 @@ func _process(_delta):
 		children[current_weapon].shoot()
 
 func switch_weapon_to(id: int) -> void:
+	if id > get_child_count() - 1:
+		return
 	current_weapon = id
 	for i in get_child_count():
 		var child = get_child(i) as Node2D

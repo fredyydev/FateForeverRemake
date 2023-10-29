@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://nw8g0vofwvpg"]
+
+[ext_resource type="Script" path="res://scripts/weapons/rocket_launcher.gd" id="1_akhuy"]
+[ext_resource type="PackedScene" uid="uid://b07uqhly42odu" path="res://scenes/weapons/bullets/rocket.tscn" id="2_vd58k"]
+[ext_resource type="Texture2D" uid="uid://bx7hsr5v81g3v" path="res://sprites/weapons/bazooka.png" id="3_7vvxc"]
+
+[node name="RocketLauncher" type="Node2D" node_paths=PackedStringArray("fire_rate")]
+script = ExtResource("1_akhuy")
+bullet_scene = ExtResource("2_vd58k")
+fire_rate = NodePath("FireRate")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1.335)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_7vvxc")
+flip_h = true
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(34.265, 0)
+gizmo_extents = 14.5
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true

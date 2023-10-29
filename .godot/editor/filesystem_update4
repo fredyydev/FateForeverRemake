@@ -11,3 +11,9 @@ res://scripts/weapons/machine_gun.gd
 res://scenes/weapons/bullets/light_round.tscn
 res://scripts/weapons/bullets/light_round.gd
 res://scripts/player/weapon_manager.gd
+res://scenes/weapons/rocket_launcher.tscn
+res://scripts/weapons/bullets/rocket.gd
+res://scripts/weapons/rocket_launcher.gd
+res://scenes/weapons/bullets/rocket.tscn
+res://scenes/weapons/super_shotgun.tscn
+res://scripts/weapons/super_shotgun.gd

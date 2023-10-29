@@ -1,11 +1,16 @@
 extends Node2D
-class_name LightRound
+class_name ShotgunPellet
 
 
 var speed := 1000.0
-@export var damage := 12.0
+@export var max_speed := 1300.0
+@export var min_speed := 1000.0
+@export var damage := 10.0
 
 func _ready():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	speed = rng.randf_range(min_speed, max_speed)
 	$DamagerComponent.damage = damage
 
 func _physics_process(delta):
@@ -22,4 +27,3 @@ func _on_damager_component_collided_with_hitbox():
 
 func _on_damager_component_collided_with_object():
 	queue_free()
-

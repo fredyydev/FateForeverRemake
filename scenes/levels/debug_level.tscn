@@ -1,7 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://dor35qqshr1mu"]
+[gd_scene load_steps=7 format=3 uid="uid://dor35qqshr1mu"]
 
 [ext_resource type="Texture2D" uid="uid://bshr13ccsr3pl" path="res://icon.svg" id="1_0okgi"]
 [ext_resource type="PackedScene" uid="uid://cobeunec838cr" path="res://scenes/player/player.tscn" id="1_obxcj"]
+[ext_resource type="PackedScene" uid="uid://shec5lv4pnrf" path="res://scenes/components/hurt_box.tscn" id="3_lculp"]
+[ext_resource type="PackedScene" uid="uid://ca8didm11bv7q" path="res://scenes/components/health_component.tscn" id="4_3vk3r"]
+
+[sub_resource type="GDScript" id="GDScript_rgqfh"]
+script/source = "extends Sprite2D
+
+
+func _on_health_component_health_reached_zero():
+	queue_free()
+
+
+func _on_health_component_damaged():
+	print(\"damaged\")
+"
+
+[sub_resource type="GDScript" id="GDScript_lgjwy"]
+script/source = "extends Sprite2D
+
+
+func _on_health_component_health_reached_zero():
+	queue_free()
+"
 
 [node name="DebugLevel" type="Node2D"]
 
@@ -11,3 +33,40 @@ scale = Vector2(7.60938, 5.52344)
 texture = ExtResource("1_0okgi")
 
 [node name="Player" parent="." instance=ExtResource("1_obxcj")]
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(371, 141)
+scale = Vector2(0.66797, 0.507813)
+texture = ExtResource("1_0okgi")
+script = SubResource("GDScript_rgqfh")
+
+[node name="HealthComponent" parent="Icon2" instance=ExtResource("4_3vk3r")]
+
+[node name="HurtBox" parent="Icon2" node_paths=PackedStringArray("health_component") instance=ExtResource("3_lculp")]
+position = Vector2(-519.485, 78.7692)
+scale = Vector2(1.49707, 1.96923)
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Icon2/HurtBox"]
+position = Vector2(347, -40)
+scale = Vector2(0.66797, 0.507813)
+polygon = PackedVector2Array(64, -59.6, 64, 59, 59.6, 64, -59, 64, -64, 59.6, -64, -59.6, -59, -63.9, 59, -64)
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(480, 78.9999)
+scale = Vector2(0.890628, 0.812501)
+texture = ExtResource("1_0okgi")
+script = SubResource("GDScript_lgjwy")
+
+[node name="HurtBox" parent="Icon3" node_paths=PackedStringArray("health_component") instance=ExtResource("3_lculp")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Icon3/HurtBox"]
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(64, -59.6, 64, 59, 59.6, 64, -59, 64, -64, 59.6, -64, -59.6, -59, -63.9, 59, -64)
+
+[node name="HealthComponent" parent="Icon3" instance=ExtResource("4_3vk3r")]
+
+[connection signal="damaged" from="Icon2/HealthComponent" to="Icon2" method="_on_health_component_damaged"]
+[connection signal="health_reached_zero" from="Icon2/HealthComponent" to="Icon2" method="_on_health_component_health_reached_zero"]
+[connection signal="health_reached_zero" from="Icon3/HealthComponent" to="Icon3" method="_on_health_component_health_reached_zero"]

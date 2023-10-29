@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://v2wwgpy1gyyb"]
+
+[ext_resource type="Script" path="res://scripts/weapons/super_shotgun.gd" id="1_r7y8w"]
+[ext_resource type="Texture2D" uid="uid://86281bi0re6m" path="res://sprites/weapons/super_shotgun_sprtie.png" id="2_5p8id"]
+[ext_resource type="PackedScene" uid="uid://b1p0swcvnjww8" path="res://scenes/weapons/bullets/shotgun_pellet.tscn" id="2_u5wmw"]
+
+[node name="Shotgun" type="Node2D"]
+script = ExtResource("1_r7y8w")
+bullet_scene = ExtResource("2_u5wmw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5p8id")
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(20.05, 0)
+gizmo_extents = 14.5
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true

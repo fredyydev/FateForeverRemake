@@ -1,48 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1p0swcvnjww8"]
 
+[ext_resource type="Script" path="res://scripts/weapons/bullets/shotgun_pellet.gd" id="1_2p8d7"]
 [ext_resource type="Texture2D" uid="uid://c5jovxmppyecs" path="res://sprites/weapons/bullets/pellet_sprite.png" id="1_vxuat"]
 [ext_resource type="PackedScene" uid="uid://cym6sqiwdcxpw" path="res://scenes/components/damager_component.tscn" id="2_27h88"]
-
-[sub_resource type="GDScript" id="GDScript_3pkxq"]
-resource_name = "shotgun_pellet"
-script/source = "extends Node2D
-class_name ShotgunPellet
-
-
-var speed := 1000.0
-@export var max_speed := 1300.0
-@export var min_speed := 1000.0
-@export var damage := 10.0
-
-func _ready():
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	speed = rng.randf_range(min_speed, max_speed)
-	$DamagerComponent.damage = damage
-
-func _physics_process(delta):
-	position += transform.x * speed * delta
-
-
-func _on_self_destruct_timer_timeout():
-	queue_free()
-
-
-func _on_damager_component_collided_with_hitbox():
-	queue_free()
-
-
-func _on_damager_component_collided_with_object():
-	queue_free()
-"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f4hpi"]
 radius = 2.82843
 
 [node name="ShotgunPellet" type="Node2D"]
-script = SubResource("GDScript_3pkxq")
-max_speed = 1500.0
-min_speed = 1200.0
+script = ExtResource("1_2p8d7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
