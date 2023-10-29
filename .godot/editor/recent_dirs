@@ -1,7 +1,8 @@
+res://scripts/weapons/bullets
+res://scripts/weapons
 res://scripts/components
 res://scenes/components
 res://scenes/weapons/bullets
-res://scripts/weapons
 res://scripts/player
 res://scripts/autoload
 res://scenes/player

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cobeunec838cr"]
+[gd_scene load_steps=14 format=3 uid="uid://cobeunec838cr"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_le4hm"]
 [ext_resource type="Texture2D" uid="uid://buku51740ruym" path="res://sprites/player/fate_guy.png" id="1_ulrh3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/player/weapon_manager.gd" id="4_53sb2"]
 [ext_resource type="PackedScene" uid="uid://shec5lv4pnrf" path="res://scenes/components/hurt_box.tscn" id="4_fcrdt"]
 [ext_resource type="PackedScene" uid="uid://b7urnipg2vxf1" path="res://scenes/weapons/shotgun.tscn" id="6_o3du6"]
+[ext_resource type="PackedScene" uid="uid://dpvqochu457vh" path="res://scenes/weapons/machine_gun.tscn" id="7_0lh1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tygh"]
 size = Vector2(20, 49)
@@ -140,6 +141,9 @@ script = ExtResource("4_53sb2")
 
 [node name="Shotgun" parent="WeaponManager" instance=ExtResource("6_o3du6")]
 position = Vector2(38.33, 0)
+
+[node name="MachineGun" parent="WeaponManager" instance=ExtResource("7_0lh1x")]
+position = Vector2(41.775, 0)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_wr5we")

@@ -5,3 +5,9 @@ res://scenes/weapons/shotgun.tscn
 res://scenes/components/hurt_box.tscn
 res://scenes/weapons/bullets/shotgun_pellet.tscn
 res://scenes/components/damager_component.tscn
+res://scripts/components/hurt_box.gd
+res://scenes/weapons/machine_gun.tscn
+res://scripts/weapons/machine_gun.gd
+res://scenes/weapons/bullets/light_round.tscn
+res://scripts/weapons/bullets/light_round.gd
+res://scripts/player/weapon_manager.gd

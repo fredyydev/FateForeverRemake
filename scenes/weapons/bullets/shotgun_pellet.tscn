@@ -8,13 +8,16 @@ resource_name = "shotgun_pellet"
 script/source = "extends Node2D
 class_name ShotgunPellet
 
-@export var speed := 1000.0
+
+var speed := 1000.0
+@export var max_speed := 1300.0
+@export var min_speed := 1000.0
 @export var damage := 10.0
 
 func _ready():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	speed = rng.randf_range(1000, 1300)
+	speed = rng.randf_range(min_speed, max_speed)
 	$DamagerComponent.damage = damage
 
 func _physics_process(delta):
@@ -38,6 +41,8 @@ radius = 2.82843
 
 [node name="ShotgunPellet" type="Node2D"]
 script = SubResource("GDScript_3pkxq")
+max_speed = 1500.0
+min_speed = 1200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

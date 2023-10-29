@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpvqochu457vh"]
+
+[ext_resource type="Script" path="res://scripts/weapons/machine_gun.gd" id="1_grb6m"]
+[ext_resource type="Texture2D" uid="uid://cenr6hvwc6qa1" path="res://sprites/weapons/machine_gun_sprite.png" id="2_aw0ok"]
+[ext_resource type="PackedScene" uid="uid://b3rs8v8gvrxu7" path="res://scenes/weapons/bullets/light_round.tscn" id="2_xxewg"]
+
+[node name="MachineGun" type="Node2D" node_paths=PackedStringArray("fire_rate")]
+script = ExtResource("1_grb6m")
+bullet_scene = ExtResource("2_xxewg")
+fire_rate = NodePath("FireRate")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_aw0ok")
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(26.605, 0)
+gizmo_extents = 14.5
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.14
+one_shot = true
