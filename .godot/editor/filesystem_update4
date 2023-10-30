@@ -1,12 +1,10 @@
 res://scenes/levels/debug_level.tscn
 res://scenes/player/player.tscn
 res://scenes/weapons/super_shotgun.tscn
-res://scenes/weapons/bullets/light_round.tscn
 res://scenes/weapons/machine_gun.tscn
 res://scenes/weapons/rocket_launcher.tscn
-res://scenes/weapons/bullets/shotgun_pellet.tscn
-res://scripts/vfx/trail.gd
-res://scripts/weapons/bullets/shotgun_pellet.gd
-res://scenes/components/trail.tscn
-res://scripts/player/player.gd
-res://scripts/components/health_component.gd
+res://scripts/weapons/shotgun.gd
+res://scripts/weapons/rocket_launcher.gd
+res://scripts/weapons/machine_gun.gd
+res://scripts/weapons/super_shotgun.gd
+res://scripts/player/weapon_manager.gd

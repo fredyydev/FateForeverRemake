@@ -1,8 +1,10 @@
-Label
+Control
 AspectRatioContainer
+HBoxContainer
+Label
+VBoxContainer
 TextureProgressBar
 ProgressBar
-Control
 CanvasLayer
 Timer
 Line2D

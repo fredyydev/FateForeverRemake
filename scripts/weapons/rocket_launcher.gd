@@ -5,13 +5,15 @@ class_name RocketLauncher
 @export var bullet_scene: PackedScene
 @export var fire_rate: Timer
 
+var ammo_type = "rockets"
+
 signal fired
 
 var rng = RandomNumberGenerator.new()
 
-func shoot():
+func shoot() -> int:
 	if not fire_rate.is_stopped():
-		return
+		return 0
 	
 	emit_signal("fired")
 	fire_rate.start()
@@ -22,3 +24,4 @@ func shoot():
 	new_bullet.position = $BulletSpawnPoint.global_position
 	new_bullet.rotation_degrees = $BulletSpawnPoint.global_rotation_degrees 
 	get_tree().current_scene.add_child(new_bullet)
+	return 1

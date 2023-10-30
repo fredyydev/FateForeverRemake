@@ -7,13 +7,15 @@ class_name MachineGun
 @export var max_bullet_angle := 5.0
 @export var min_bullet_angle := -5.0
 
+var ammo_type = "light_rounds"
+
 signal fired
 
 var rng = RandomNumberGenerator.new()
 
-func shoot():
+func shoot() -> int:
 	if not fire_rate.is_stopped():
-		return
+		return 0
 	
 	emit_signal("fired")
 	fire_rate.start()
@@ -25,3 +27,4 @@ func shoot():
 	new_bullet.position = $BulletSpawnPoint.global_position
 	new_bullet.rotation_degrees = $BulletSpawnPoint.global_rotation_degrees + desired_angle
 	get_tree().current_scene.add_child(new_bullet)
+	return 1

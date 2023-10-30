@@ -9,9 +9,12 @@ signal fired
 @export var amount_of_pellets := 6
 @export var max_pellet_angle := 15.0
 
-func shoot():
+var ammo_type = "shells"
+
+#shoots and returns the amount of ammo used
+func shoot() -> int:
 	if not fire_rate.is_stopped():
-		return
+		return 0
 
 	fire_rate.start()
 	emit_signal("fired")
@@ -23,3 +26,5 @@ func shoot():
 		new_bullet.position = $BulletSpawnPoint.global_position
 		new_bullet.rotation_degrees = $BulletSpawnPoint.global_rotation_degrees + desired_angle
 		get_tree().current_scene.add_child(new_bullet)
+	
+	return 1
