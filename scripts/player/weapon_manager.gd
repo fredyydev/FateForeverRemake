@@ -3,7 +3,7 @@ extends Node2D
 class_name WeaponManager
 
 #Ammo
-var ammo := {
+@export var ammo := {
 	"shells" : 8,
 	"light_rounds" : 0,
 	"rockets" : 0
