@@ -13,7 +13,7 @@ class_name WeaponManager
 @export var ammo_label: Label
 
 var current_weapon = 0
-var current_weapon_node: Node2D
+var current_weapon_node: Weapon
 
 func _ready():
 	switch_weapon(current_weapon)
@@ -50,12 +50,10 @@ func switch_weapon(id: int) -> void:
 	for i in get_child_count():
 		var child = get_child(i) as Node2D
 		if i == current_weapon:
-			child.set_process(true)
-			child.set_physics_process(true)
+			child.process_mode = Node.PROCESS_MODE_INHERIT
 			child.visible = true
 		else:
-			child.set_process(false)
-			child.set_physics_process(false)
+			child.process_mode = Node.PROCESS_MODE_DISABLED
 			child.visible = false
 	
 	current_weapon_node = get_child(current_weapon) 

@@ -1,5 +1,4 @@
-extends Node2D
-
+extends Weapon
 
 @onready var fire_rate: Timer = $FireRate
 signal fired
@@ -7,14 +6,14 @@ signal fired
 @export var bullet_scene: PackedScene
 #The amount of bullets the shotgun shoots at once
 @export var amount_of_pellets := 10
-@export var max_pellet_angle := 5.0
+@export var max_pellet_angle := 2.0
 
 var ammo_type = "shells"
 
 func shoot() -> int:
 	if not fire_rate.is_stopped():
 		return 0
-
+	
 	fire_rate.start()
 	emit_signal("fired")
 

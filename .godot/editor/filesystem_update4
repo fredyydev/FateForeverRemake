@@ -1,11 +1,8 @@
-res://scenes/player/player.tscn
+res://scenes/enemies/soldier.tscn
+res://scripts/enemies/soldier.gd
+res://scripts/enemies/enemy.gd
+res://scripts/components/hurt_box.gd
 res://scenes/levels/debug_level.tscn
-res://scenes/weapons/super_shotgun.tscn
-res://scenes/weapons/machine_gun.tscn
-res://scenes/weapons/rocket_launcher.tscn
-res://scripts/hud/key.gd
-res://scripts/vfx/trail.gd
-res://scenes/weapons/shotgun.tscn
-res://scenes/weapons/bullets/shotgun_pellet.tscn
-res://scenes/vfx/trail.tscn
+res://scenes/player/player.tscn
+res://scenes/components/player_follower.tscn
 res://scripts/player/weapon_manager.gd

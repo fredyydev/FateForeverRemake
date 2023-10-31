@@ -1,10 +1,12 @@
-res://scripts/hud
+res://scripts/enemies
+res://scenes/enemies
+res://scripts/components
 res://scenes/components
+res://scripts/hud
 res://scripts/vfx
 res://sprites/weapons/bullets
 res://scripts/weapons/bullets
 res://scripts/weapons
-res://scripts/components
 res://scenes/weapons/bullets
 res://scripts/player
 res://scripts/autoload

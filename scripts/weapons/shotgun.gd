@@ -1,5 +1,4 @@
-extends Node2D
-
+extends Weapon
 
 @onready var fire_rate: Timer = $FireRate
 signal fired
@@ -7,7 +6,7 @@ signal fired
 @export var bullet_scene: PackedScene
 #The amount of bullets the shotgun shoots at once
 @export var amount_of_pellets := 6
-@export var max_pellet_angle := 15.0
+@export var max_pellet_angle := 8.0
 
 var ammo_type = "shells"
 

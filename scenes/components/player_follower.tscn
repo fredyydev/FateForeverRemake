@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0uiy26d0ku44"]
+
+[ext_resource type="Script" path="res://scripts/components/player_follower.gd" id="1_1p0ug"]
+
+[node name="PlayerFollower" type="NavigationAgent2D"]
+path_postprocessing = 1
+script = ExtResource("1_1p0ug")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -7,5 +7,6 @@ class_name HurtBox
 func _on_area_entered(area):
 	if area is DamagerComponent:
 		health_component.take_damage(area.damage)
-
+		if owner is Enemy:
+			owner.emit_signal("wake_up")
 

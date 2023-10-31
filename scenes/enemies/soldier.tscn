@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://cf2dk7bfuxkhq"]
+
+[ext_resource type="Script" path="res://scripts/enemies/soldier.gd" id="1_iklol"]
+[ext_resource type="Texture2D" uid="uid://jwkrkdosf0tc" path="res://sprites/enemies/soldier_sprite.png" id="1_mfwg6"]
+[ext_resource type="PackedScene" uid="uid://ca8didm11bv7q" path="res://scenes/components/health_component.tscn" id="3_j0we2"]
+[ext_resource type="PackedScene" uid="uid://shec5lv4pnrf" path="res://scenes/components/hurt_box.tscn" id="4_clepy"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="5_0gla2"]
+[ext_resource type="PackedScene" uid="uid://d0uiy26d0ku44" path="res://scenes/components/player_follower.tscn" id="5_qh86e"]
+[ext_resource type="PackedScene" uid="uid://b7urnipg2vxf1" path="res://scenes/weapons/shotgun.tscn" id="6_8rhr5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ayhkb"]
+radius = 17.0294
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c35u2"]
+radius = 14.0
+height = 48.0
+
+[sub_resource type="GDScript" id="GDScript_1hmkk"]
+script/source = "extends State
+
+@onready var soldier := owner as Soldier
+
+func on_enter(_metadata: Dictionary):
+	soldier.connect(\"wake_up\", on_wake_up)
+
+
+func on_exit():
+	soldier.disconnect(\"wake_up\", on_wake_up)
+
+func on_update(_delta):
+	pass
+
+func on_wake_up() -> void:
+	state_machine.transition_to(\"Attack\")
+"
+
+[sub_resource type="GDScript" id="GDScript_30dwv"]
+script/source = "extends State
+
+@onready var soldier := owner as Soldier
+@export var shotgun: Weapon
+var rng := RandomNumberGenerator.new()
+
+func on_enter(md):
+	rng.randomize()
+	var time_to_attack = rng.randf_range(1, 2)
+	$AttackTimer.wait_time = time_to_attack
+	$AttackTimer.start()
+
+func on_exit():
+	$AttackTimer.stop()
+
+func on_physics_update(_delta):
+	soldier.look_at_player()
+	soldier.follow_player()
+
+
+func _on_attack_timer_timeout():
+	if soldier.player_in_sight:
+		shotgun.shoot()
+	rng.randomize()
+	var time_to_attack = rng.randf_range(1, 2)
+	$AttackTimer.wait_time = time_to_attack
+	$AttackTimer.start()
+"
+
+[node name="Soldier" type="CharacterBody2D"]
+collision_layer = 16
+motion_mode = 1
+wall_min_slide_angle = 0.0
+safe_margin = 3.737
+script = ExtResource("1_iklol")
+movement_speed = 100.0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(600, 0)
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ayhkb")
+
+[node name="SoldierSprite" type="Sprite2D" parent="."]
+position = Vector2(5, 0)
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_mfwg6")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_j0we2")]
+
+[node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_clepy")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_c35u2")
+
+[node name="PlayerFollower" parent="." instance=ExtResource("5_qh86e")]
+path_desired_distance = 15.0
+debug_enabled = true
+
+[node name="Shotgun" parent="." instance=ExtResource("6_8rhr5")]
+position = Vector2(36.625, 0)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_0gla2")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_1hmkk")
+
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("shotgun")]
+script = SubResource("GDScript_30dwv")
+shotgun = NodePath("../../Shotgun")
+
+[node name="AttackTimer" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
+[connection signal="timeout" from="StateMachine/Attack/AttackTimer" to="StateMachine/Attack" method="_on_attack_timer_timeout"]

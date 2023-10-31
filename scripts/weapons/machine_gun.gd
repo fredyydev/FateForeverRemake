@@ -1,4 +1,4 @@
-extends Node2D
+extends Weapon
 class_name MachineGun
 
 
