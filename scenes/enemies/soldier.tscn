@@ -96,7 +96,6 @@ shape = SubResource("CapsuleShape2D_c35u2")
 
 [node name="PlayerFollower" parent="." instance=ExtResource("5_qh86e")]
 path_desired_distance = 15.0
-debug_enabled = true
 
 [node name="Shotgun" parent="." instance=ExtResource("6_8rhr5")]
 position = Vector2(36.625, 0)

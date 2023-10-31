@@ -165,9 +165,9 @@ texture = ExtResource("1_ulrh3")
 [node name="WeaponManager" type="Node2D" parent="." node_paths=PackedStringArray("ammo_label")]
 script = ExtResource("4_53sb2")
 ammo = {
-"light_rounds": 40,
-"rockets": 5,
-"shells": 8
+"light_rounds": 66,
+"rockets": 6,
+"shells": 16
 }
 ammo_label = NodePath("../HUD/HBoxContainer/AmmoContainer/Ammo")
 
