@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cobeunec838cr"]
+[gd_scene load_steps=25 format=3 uid="uid://cobeunec838cr"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_le4hm"]
 [ext_resource type="Texture2D" uid="uid://buku51740ruym" path="res://sprites/player/fate_guy.png" id="1_ulrh3"]
@@ -12,7 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://v2wwgpy1gyyb" path="res://scenes/weapons/super_shotgun.tscn" id="9_wpreq"]
 [ext_resource type="Texture2D" uid="uid://c7f7v8qf8wdtp" path="res://sprites/hud/lifejar_shadow.png" id="10_4e1hm"]
 [ext_resource type="Texture2D" uid="uid://cq8j7a7rn4lig" path="res://sprites/hud/lifejar_container.png" id="10_jh1s5"]
+[ext_resource type="Texture2D" uid="uid://6homubahnxoo" path="res://sprites/hud/key_container.png" id="10_xhmqr"]
 [ext_resource type="Texture2D" uid="uid://faic3vmag0id" path="res://sprites/hud/lifejar_blood.png" id="11_alx0b"]
+[ext_resource type="Texture2D" uid="uid://dvcjv1ssvc3bv" path="res://sprites/hud/key_icon.png" id="11_j542u"]
+[ext_resource type="Script" path="res://scripts/hud/key.gd" id="12_t7yix"]
 [ext_resource type="FontFile" uid="uid://bif02s2k5by20" path="res://fonts/Retro Gaming.ttf" id="13_agpqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tygh"]
@@ -21,18 +24,18 @@ size = Vector2(20, 49)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ayi0w"]
 size = Vector2(20, 49)
 
+[sub_resource type="LabelSettings" id="LabelSettings_7orc6"]
+font = ExtResource("13_agpqo")
+shadow_size = 3
+shadow_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+shadow_offset = Vector2(-1.245, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_baxv2"]
 font = ExtResource("13_agpqo")
 font_size = 29
 shadow_size = 12
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(-0.36, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_7orc6"]
-font = ExtResource("13_agpqo")
-shadow_size = 3
-shadow_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
-shadow_offset = Vector2(-1.245, 1)
 
 [sub_resource type="GDScript" id="GDScript_1n5ck"]
 resource_name = "Idle"
@@ -122,6 +125,7 @@ func on_update(_delta):
 collision_layer = 8
 collision_mask = 17
 motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_le4hm")
 lifebar = NodePath("HUD/HBoxContainer/LifebarContainer/Lifebar")
 lifebar_label = NodePath("HUD/HBoxContainer/LifebarContainer/Lifebar/Label")
@@ -185,26 +189,74 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="AmmoContainer2" type="Control" parent="HUD/HBoxContainer"]
+[node name="KeyContainer" type="Control" parent="HUD/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="Ammo" type="Label" parent="HUD/HBoxContainer/AmmoContainer2"]
+[node name="TextureRect" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -43.0
-offset_right = 71.0
-offset_bottom = -3.0
+offset_left = -13.0
+offset_top = -133.0
+offset_right = 90.0
+offset_bottom = -30.0
 grow_vertical = 0
-size_flags_horizontal = 4
-text = "000"
-label_settings = SubResource("LabelSettings_baxv2")
-horizontal_alignment = 1
-vertical_alignment = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_xhmqr")
+
+[node name="BlueKey" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer/TextureRect"]
+modulate = Color(0, 0.501961, 1, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -36.5
+offset_right = 63.0
+offset_bottom = -11.5
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("11_j542u")
+expand_mode = 2
+script = ExtResource("12_t7yix")
+
+[node name="RedKey" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer/TextureRect"]
+modulate = Color(1, 0.243137, 0.243137, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -19.5
+offset_right = 63.0
+offset_bottom = 5.5
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("11_j542u")
+expand_mode = 2
+script = ExtResource("12_t7yix")
+
+[node name="YellowKey" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer/TextureRect"]
+modulate = Color(1, 0.823529, 0.0196078, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -1.5
+offset_right = 63.0
+offset_bottom = 23.5
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("11_j542u")
+expand_mode = 2
+script = ExtResource("12_t7yix")
 
 [node name="LifebarContainer" type="Control" parent="HUD/HBoxContainer"]
 layout_mode = 2

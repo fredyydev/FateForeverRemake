@@ -1,10 +1,6 @@
-res://scenes/levels/debug_level.tscn
 res://scenes/player/player.tscn
+res://scenes/levels/debug_level.tscn
 res://scenes/weapons/super_shotgun.tscn
 res://scenes/weapons/machine_gun.tscn
 res://scenes/weapons/rocket_launcher.tscn
-res://scripts/weapons/shotgun.gd
-res://scripts/weapons/rocket_launcher.gd
-res://scripts/weapons/machine_gun.gd
-res://scripts/weapons/super_shotgun.gd
-res://scripts/player/weapon_manager.gd
+res://scripts/hud/key.gd
