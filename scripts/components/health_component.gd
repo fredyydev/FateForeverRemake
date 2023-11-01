@@ -6,7 +6,8 @@ class_name HealthComponent
 
 signal health_changed(current_value)
 signal health_reached_zero
-signal damaged
+#md is a dictionary so you can pass any value you want
+signal damaged(amount)
 signal healed
 
 func _process(_delta):
@@ -17,12 +18,13 @@ func _process(_delta):
 	if current_health <= 0:
 		emit_signal("health_reached_zero")
 
+#md is a dictionary so you can pass any value you want
 func take_damage(amount: float) -> void:
 	current_health -= amount
 	if current_health <= 0:
 		emit_signal("health_reached_zero")
 	emit_signal("health_changed", current_health)
-	emit_signal("damaged")
+	emit_signal("damaged", amount)
 
 func heal(amount: float) -> void:
 	current_health += amount

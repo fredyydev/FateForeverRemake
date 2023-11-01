@@ -3,6 +3,7 @@ class_name Soldier
 
 @onready var nav_agent := $PlayerFollower as NavigationAgent2D
 @export var movement_speed := 80.0
+@export var stagger_amount := 5.0
 @export var stop_following_dis := 140.0
 
 var distance_to_player: float
@@ -20,6 +21,10 @@ func follow_player():
 
 func look_at_player() -> void:
 	look_at(PlayerGlobals.player_position)
+
+func stagger():
+	velocity -= transform.x * stagger_amount
+	move_and_slide()
 
 func _on_health_component_health_reached_zero():
 	queue_free()
