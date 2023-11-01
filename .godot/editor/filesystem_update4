@@ -19,3 +19,4 @@ res://scripts/weapons/bullets/shotgun_pellet.gd
 res://scenes/components/damager_component.tscn
 res://scripts/components/damager_component.gd
 res://scripts/player/player.gd
+res://scenes/weapons/bullets/light_round.tscn

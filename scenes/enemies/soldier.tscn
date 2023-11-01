@@ -72,7 +72,7 @@ func _on_health_component_damaged(amount: float):
 	if state_machine.current_state == self:
 		var health_on_damage = health_comp.current_health
 		rng.randomize()
-		stagger_chance += amount 
+		stagger_chance += amount/ 5 
 		if stagger_chance >=  rng.randi_range(0, 100):
 			state_machine.transition_to(\"Stagger\")
 "
@@ -84,6 +84,7 @@ script/source = "extends State
 @onready var soldier := owner as Soldier
 
 func on_enter(_metadata: Dictionary):
+	print(\"stager\")
 	await  get_tree().create_timer(0.1).timeout
 	state_machine.transition_to(\"Attack\")
 
