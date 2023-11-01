@@ -2,7 +2,7 @@ extends Node2D
 class_name LightRound
 
 
-var speed := 1000.0
+var speed := 2000.0
 @export var damage := 12.0
 
 func _ready():

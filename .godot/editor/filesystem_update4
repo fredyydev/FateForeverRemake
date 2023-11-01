@@ -20,3 +20,4 @@ res://scenes/components/damager_component.tscn
 res://scripts/components/damager_component.gd
 res://scripts/player/player.gd
 res://scenes/weapons/bullets/light_round.tscn
+res://scripts/weapons/bullets/light_round.gd
