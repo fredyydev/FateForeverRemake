@@ -6,12 +6,13 @@ signal fired
 @export var bullet_scene: PackedScene
 #The amount of bullets the shotgun shoots at once
 @export var amount_of_pellets := 6
-@export var max_pellet_angle := 8.0
+@export var max_pellet_angle := 10.0
 
 var ammo_type = "shells"
 
 #shoots and returns the amount of ammo used
-func shoot() -> int:
+func shoot():
+	super()
 	if not fire_rate.is_stopped():
 		return 0
 

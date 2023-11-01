@@ -14,6 +14,7 @@ signal fired
 var rng = RandomNumberGenerator.new()
 
 func shoot() -> int:
+	super()
 	if not fire_rate.is_stopped():
 		return 0
 	

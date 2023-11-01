@@ -64,7 +64,7 @@ func _on_attack_timer_timeout():
 	$AttackTimer.start()
 "
 
-[node name="Soldier" type="CharacterBody2D"]
+[node name="Soldier" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 16
 motion_mode = 1
 wall_min_slide_angle = 0.0

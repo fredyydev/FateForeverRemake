@@ -6,3 +6,9 @@ res://scenes/levels/debug_level.tscn
 res://scenes/player/player.tscn
 res://scenes/components/player_follower.tscn
 res://scripts/player/weapon_manager.gd
+res://scripts/weapons/weapon.gd
+res://scripts/weapons/shotgun.gd
+res://scripts/weapons/machine_gun.gd
+res://scripts/weapons/rocket_launcher.gd
+res://scripts/weapons/super_shotgun.gd
+res://scenes/weapons/super_shotgun.tscn
