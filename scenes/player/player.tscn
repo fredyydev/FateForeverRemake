@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c7f7v8qf8wdtp" path="res://sprites/hud/lifejar_shadow.png" id="10_4e1hm"]
 [ext_resource type="Texture2D" uid="uid://cq8j7a7rn4lig" path="res://sprites/hud/lifejar_container.png" id="10_jh1s5"]
 [ext_resource type="Texture2D" uid="uid://6homubahnxoo" path="res://sprites/hud/key_container.png" id="10_xhmqr"]
-[ext_resource type="Texture2D" uid="uid://faic3vmag0id" path="res://sprites/hud/lifejar_blood.png" id="11_alx0b"]
+[ext_resource type="Texture2D" uid="uid://dakoa40nnrxx4" path="res://sprites/hud/lifejar_blood.png" id="11_alx0b"]
 [ext_resource type="Texture2D" uid="uid://dvcjv1ssvc3bv" path="res://sprites/hud/key_icon.png" id="11_j542u"]
 [ext_resource type="Script" path="res://scripts/hud/key.gd" id="12_t7yix"]
 [ext_resource type="FontFile" uid="uid://bif02s2k5by20" path="res://fonts/Retro Gaming.ttf" id="13_agpqo"]
@@ -199,64 +199,77 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer"]
+[node name="Image" type="NinePatchRect" parent="HUD/HBoxContainer/KeyContainer"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -13.0
-offset_top = -133.0
-offset_right = 90.0
-offset_bottom = -30.0
+offset_left = -4.0
+offset_top = -105.0
+offset_right = 57.0
+offset_bottom = -29.0
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_xhmqr")
+patch_margin_left = 22
+patch_margin_top = 22
+patch_margin_right = 22
+patch_margin_bottom = 22
 
-[node name="BlueKey" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer/TextureRect"]
+[node name="BlueKey" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer/Image"]
 modulate = Color(0, 0.501961, 1, 1)
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 31.0
-offset_top = -36.5
-offset_right = 63.0
-offset_bottom = -11.5
-grow_vertical = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.1667
+offset_top = -72.0
+offset_right = 12.8333
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("11_j542u")
 expand_mode = 2
 script = ExtResource("12_t7yix")
 
-[node name="RedKey" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer/TextureRect"]
+[node name="RedKey" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer/Image"]
 modulate = Color(1, 0.243137, 0.243137, 1)
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 31.0
-offset_top = -19.5
-offset_right = 63.0
-offset_bottom = 5.5
-grow_vertical = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.8333
+offset_top = -55.3333
+offset_right = 12.1667
+offset_bottom = -30.3333
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("11_j542u")
 expand_mode = 2
 script = ExtResource("12_t7yix")
 
-[node name="YellowKey" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer/TextureRect"]
+[node name="YellowKey" type="TextureRect" parent="HUD/HBoxContainer/KeyContainer/Image"]
 modulate = Color(1, 0.823529, 0.0196078, 1)
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 31.0
-offset_top = -1.5
-offset_right = 63.0
-offset_bottom = 23.5
-grow_vertical = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.8333
+offset_top = -38.0
+offset_right = 12.1667
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("11_j542u")
@@ -283,7 +296,9 @@ grow_vertical = 0
 scale = Vector2(1.4, 1.4)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+value = 99.0
 fill_mode = 3
+nine_patch_stretch = true
 texture_under = ExtResource("10_4e1hm")
 texture_over = ExtResource("10_jh1s5")
 texture_progress = ExtResource("11_alx0b")

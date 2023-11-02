@@ -1,9 +1,11 @@
+AnimationPlayer
+Sprite2D
+NinePatchRect
 Node
 Timer
 RayCast2D
 TileMap
 StaticBody2D
-Sprite2D
 NavigationRegion2D
 CollisionShape2D
 CharacterBody2D
@@ -19,7 +21,6 @@ TextureProgressBar
 ProgressBar
 CanvasLayer
 Line2D
-AnimationPlayer
 AnimatedSprite2D
 Area2D
 Node2D
