@@ -1,3 +1,6 @@
+res://scripts/weapons
+res://scripts/weapons/bullets
+res://scenes/weapons/bullets
 res://scripts/enemies
 res://scenes/enemies
 res://scripts/components
@@ -5,9 +8,6 @@ res://scenes/components
 res://scripts/hud
 res://scripts/vfx
 res://sprites/weapons/bullets
-res://scripts/weapons/bullets
-res://scripts/weapons
-res://scenes/weapons/bullets
 res://scripts/player
 res://scripts/autoload
 res://scenes/player

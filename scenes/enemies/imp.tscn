@@ -1,19 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf2dk7bfuxkhq"]
+[gd_scene load_steps=14 format=3 uid="uid://dqn4qpyv5fcsr"]
 
-[ext_resource type="Script" path="res://scripts/enemies/soldier.gd" id="1_iklol"]
-[ext_resource type="Texture2D" uid="uid://jwkrkdosf0tc" path="res://sprites/enemies/soldier_sprite.png" id="1_mfwg6"]
-[ext_resource type="PackedScene" uid="uid://ca8didm11bv7q" path="res://scenes/components/health_component.tscn" id="3_j0we2"]
-[ext_resource type="PackedScene" uid="uid://shec5lv4pnrf" path="res://scenes/components/hurt_box.tscn" id="4_clepy"]
-[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="5_0gla2"]
-[ext_resource type="PackedScene" uid="uid://d0uiy26d0ku44" path="res://scenes/components/player_follower.tscn" id="5_qh86e"]
-[ext_resource type="PackedScene" uid="uid://b7urnipg2vxf1" path="res://scenes/weapons/shotgun.tscn" id="6_8rhr5"]
+[ext_resource type="Script" path="res://scripts/enemies/soldier.gd" id="1_h0tfg"]
+[ext_resource type="Texture2D" uid="uid://bcsdwk57cd63e" path="res://sprites/enemies/eevil_sprite.png" id="2_bastj"]
+[ext_resource type="PackedScene" uid="uid://ca8didm11bv7q" path="res://scenes/components/health_component.tscn" id="3_hmvix"]
+[ext_resource type="Script" path="res://scripts/weapons/fireball_launcher.gd" id="4_ccfkr"]
+[ext_resource type="PackedScene" uid="uid://bidyftrjkrxdf" path="res://scenes/weapons/bullets/fire_ball.tscn" id="4_sks0p"]
+[ext_resource type="PackedScene" uid="uid://shec5lv4pnrf" path="res://scenes/components/hurt_box.tscn" id="4_wl25n"]
+[ext_resource type="PackedScene" uid="uid://d0uiy26d0ku44" path="res://scenes/components/player_follower.tscn" id="5_21m45"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="7_4ckua"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ayhkb"]
-radius = 17.0294
+radius = 23.0868
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c35u2"]
 radius = 14.0
-height = 48.0
+height = 64.0
 
 [sub_resource type="GDScript" id="GDScript_1hmkk"]
 script/source = "extends State
@@ -39,7 +40,7 @@ script/source = "extends State
 
 @onready var soldier := owner as Soldier
 @export var health_comp: HealthComponent
-@export var shotgun: Weapon
+@export var fire_launcher: Weapon
 @export var stagger_chance := 2
 @onready var initial_stagger = stagger_chance
 var rng := RandomNumberGenerator.new()
@@ -61,18 +62,18 @@ func on_physics_update(_delta):
 
 func _on_attack_timer_timeout():
 	if soldier.player_in_sight:
-		shotgun.shoot()
+		fire_launcher.shoot()
 	rng.randomize()
 	var time_to_attack = rng.randf_range(1, 2)
 	$AttackTimer.wait_time = time_to_attack
 	$AttackTimer.start()
 
 
-func _on_health_component_damaged(amount: int):
+func _on_health_component_damaged(amount: float):
 	if state_machine.current_state == self:
 		rng.randomize()
-		@warning_ignore(\"integer_division\")
-		stagger_chance += amount / 5 
+		@warning_ignore(\"narrowing_conversion\")
+		stagger_chance += amount/ 5 
 		if stagger_chance >= rng.randi_range(0, 100):
 			state_machine.transition_to(\"Stagger\")
 "
@@ -97,9 +98,10 @@ collision_mask = 17
 motion_mode = 1
 wall_min_slide_angle = 0.0
 safe_margin = 3.737
-script = ExtResource("1_iklol")
-movement_speed = 100.0
-stagger_amount = 9.0
+script = ExtResource("1_h0tfg")
+movement_speed = 150.0
+stagger_amount = 20.0
+stop_following_dis = 200.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(600, 0)
@@ -112,35 +114,39 @@ shape = SubResource("CircleShape2D_ayhkb")
 position = Vector2(5, 0)
 rotation = 1.5708
 scale = Vector2(3, 3)
-texture = ExtResource("1_mfwg6")
+texture = ExtResource("2_bastj")
+offset = Vector2(0, 4.305)
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_j0we2")]
-max_health = 80.0
+[node name="HealthComponent" parent="." instance=ExtResource("3_hmvix")]
 
-[node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_clepy")]
+[node name="FireLauncher" type="Node2D" parent="."]
+script = ExtResource("4_ccfkr")
+bullet_scene = ExtResource("4_sks0p")
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="FireLauncher"]
+position = Vector2(25, 0)
+
+[node name="HurtBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_wl25n")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(1, -1)
+position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_c35u2")
 
-[node name="PlayerFollower" parent="." instance=ExtResource("5_qh86e")]
+[node name="PlayerFollower" parent="." instance=ExtResource("5_21m45")]
 path_desired_distance = 15.0
 
-[node name="Shotgun" parent="." instance=ExtResource("6_8rhr5")]
-position = Vector2(36.625, 0)
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("5_0gla2")
+script = ExtResource("7_4ckua")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_1hmkk")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("health_comp", "shotgun")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("health_comp", "fire_launcher")]
 script = SubResource("GDScript_30dwv")
 health_comp = NodePath("../../HealthComponent")
-shotgun = NodePath("../../Shotgun")
+fire_launcher = NodePath("../../FireLauncher")
 
 [node name="AttackTimer" type="Timer" parent="StateMachine/Attack"]
 one_shot = true

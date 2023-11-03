@@ -1,9 +1,12 @@
 res://scenes/levels/debug_level.tscn
+res://shaders/utilities/mask.gdshader
 res://scenes/player/player.tscn
 res://scenes/enemies/soldier.tscn
 res://scenes/components/player_follower.tscn
 res://scenes/weapons/bullets/shotgun_pellet.tscn
 res://scenes/components/damager_component.tscn
 res://scenes/weapons/bullets/light_round.tscn
-res://shaders/gui/lifejar.gdshader
-res://shaders/utilities/mask.gdshader
+res://scenes/enemies/imp.tscn
+res://scenes/weapons/bullets/fire_ball.tscn
+res://scripts/weapons/bullets/fire_ball.gd
+res://scripts/weapons/fireball_launcher.gd

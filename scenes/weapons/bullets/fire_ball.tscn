@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bidyftrjkrxdf"]
+
+[ext_resource type="Script" path="res://scripts/weapons/bullets/fire_ball.gd" id="1_edgy5"]
+[ext_resource type="PackedScene" uid="uid://cym6sqiwdcxpw" path="res://scenes/components/damager_component.tscn" id="2_8rlyh"]
+[ext_resource type="Texture2D" uid="uid://mr4j7lbbdyym" path="res://sprites/weapons/bullets/fireball.png" id="2_gip6y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_87irt"]
+radius = 8.24621
+
+[node name="FireBall" type="Node2D"]
+script = ExtResource("1_edgy5")
+damage = 25.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_gip6y")
+
+[node name="DamagerComponent" parent="." instance=ExtResource("2_8rlyh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerComponent"]
+shape = SubResource("CircleShape2D_87irt")
+
+[node name="SelfDestructTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[connection signal="collided_with_hitbox" from="DamagerComponent" to="." method="_on_damager_component_collided_with_hitbox"]
+[connection signal="collided_with_object" from="DamagerComponent" to="." method="_on_damager_component_collided_with_object"]
+[connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]

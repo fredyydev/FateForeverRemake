@@ -6,17 +6,17 @@ README.md::TextFile::-1::1698472595::0::1::::<><>::
 Retro Gaming.ttf::FontFile::2959820450446786935::1698580446::1698580537::1::::<><>::
 ::res://scenes/::1698747622
 ::res://scenes/components/::1698747054
-damager_component.tscn::PackedScene::6484061372549476848::1698961639::0::1::::<><>::res://scripts/components/damager_component.gd
+damager_component.tscn::PackedScene::6484061372549476848::1699016799::0::1::::<><>::res://scripts/components/damager_component.gd
 health_component.tscn::PackedScene::4841162447923547148::1698557297::0::1::::<><>::res://scripts/components/health_component.gd
 hurt_box.tscn::PackedScene::1278097863008732707::1698548085::0::1::::<><>::res://scripts/components/hurt_box.gd
-player_follower.tscn::PackedScene::8955800758296680135::1698961639::0::1::::<><>::res://scripts/components/player_follower.gd
-::res://scenes/enemies/::1698747663
-soldier.tscn::PackedScene::5179725476400155006::1698961639::0::1::::<><>::res://scripts/enemies/soldier.gd<>uid://jwkrkdosf0tc::::res://sprites/enemies/soldier_sprite.png<>uid://ca8didm11bv7q::::res://scenes/components/health_component.tscn<>uid://shec5lv4pnrf::::res://scenes/components/hurt_box.tscn<>res://scripts/state_machine/state_machine.gd<>uid://d0uiy26d0ku44::::res://scenes/components/player_follower.tscn<>uid://b7urnipg2vxf1::::res://scenes/weapons/shotgun.tscn
-::res://scenes/enemies/soldier/::1698747633
+player_follower.tscn::PackedScene::8955800758296680135::1699016799::0::1::::<><>::res://scripts/components/player_follower.gd
+::res://scenes/enemies/::1699016987
+imp.tscn::PackedScene::8310910651503295781::1699017904::0::1::::<><>::res://scripts/enemies/soldier.gd<>uid://bcsdwk57cd63e::::res://sprites/enemies/eevil_sprite.png<>uid://ca8didm11bv7q::::res://scenes/components/health_component.tscn<>uid://bidyftrjkrxdf::::res://scenes/weapons/bullets/fire_ball.tscn<>uid://shec5lv4pnrf::::res://scenes/components/hurt_box.tscn<>uid://d0uiy26d0ku44::::res://scenes/components/player_follower.tscn<>res://scripts/state_machine/state_machine.gd
+soldier.tscn::PackedScene::5179725476400155006::1699017224::0::1::::<><>::res://scripts/enemies/soldier.gd<>uid://jwkrkdosf0tc::::res://sprites/enemies/soldier_sprite.png<>uid://ca8didm11bv7q::::res://scenes/components/health_component.tscn<>uid://shec5lv4pnrf::::res://scenes/components/hurt_box.tscn<>res://scripts/state_machine/state_machine.gd<>uid://d0uiy26d0ku44::::res://scenes/components/player_follower.tscn<>uid://b7urnipg2vxf1::::res://scenes/weapons/shotgun.tscn
 ::res://scenes/levels/::1698548006
-debug_level.tscn::PackedScene::8178754799363744204::1698961638::0::1::::<><>::uid://cpk44yodonpvn::::res://sprites/tilemap/debug_tiles.png<>uid://cobeunec838cr::::res://scenes/player/player.tscn<>uid://cf2dk7bfuxkhq::::res://scenes/enemies/soldier.tscn
+debug_level.tscn::PackedScene::8178754799363744204::1699017179::0::1::::<><>::uid://cpk44yodonpvn::::res://sprites/tilemap/debug_tiles.png<>uid://cobeunec838cr::::res://scenes/player/player.tscn<>uid://cf2dk7bfuxkhq::::res://scenes/enemies/soldier.tscn
 ::res://scenes/player/::1698485557
-player.tscn::PackedScene::5757828829040757257::1698963381::0::1::::<><>::res://scripts/player/player.gd<>uid://buku51740ruym::::res://sprites/player/fate_guy.png<>uid://ca8didm11bv7q::::res://scenes/components/health_component.tscn<>res://scripts/state_machine/state_machine.gd<>res://scripts/player/weapon_manager.gd<>uid://shec5lv4pnrf::::res://scenes/components/hurt_box.tscn<>uid://b7urnipg2vxf1::::res://scenes/weapons/shotgun.tscn<>uid://dpvqochu457vh::::res://scenes/weapons/machine_gun.tscn<>uid://nw8g0vofwvpg::::res://scenes/weapons/rocket_launcher.tscn<>uid://v2wwgpy1gyyb::::res://scenes/weapons/super_shotgun.tscn<>uid://c7f7v8qf8wdtp::::res://sprites/hud/lifejar_shadow.png<>uid://cq8j7a7rn4lig::::res://sprites/hud/lifejar_container.png<>uid://6homubahnxoo::::res://sprites/hud/key_container.png<>uid://dvcjv1ssvc3bv::::res://sprites/hud/key_icon.png<>res://scripts/hud/key.gd<>uid://bif02s2k5by20::::res://fonts/Retro Gaming.ttf<>res://shaders/utilities/mask.gdshader
+player.tscn::PackedScene::5757828829040757257::1699016799::0::1::::<><>::res://scripts/player/player.gd<>uid://buku51740ruym::::res://sprites/player/fate_guy.png<>uid://ca8didm11bv7q::::res://scenes/components/health_component.tscn<>res://scripts/state_machine/state_machine.gd<>res://scripts/player/weapon_manager.gd<>uid://shec5lv4pnrf::::res://scenes/components/hurt_box.tscn<>uid://b7urnipg2vxf1::::res://scenes/weapons/shotgun.tscn<>uid://dpvqochu457vh::::res://scenes/weapons/machine_gun.tscn<>uid://nw8g0vofwvpg::::res://scenes/weapons/rocket_launcher.tscn<>uid://v2wwgpy1gyyb::::res://scenes/weapons/super_shotgun.tscn<>uid://c7f7v8qf8wdtp::::res://sprites/hud/lifejar_shadow.png<>uid://cq8j7a7rn4lig::::res://sprites/hud/lifejar_container.png<>uid://6homubahnxoo::::res://sprites/hud/key_container.png<>uid://dakoa40nnrxx4::::res://sprites/hud/lifejar_blood.png<>uid://dvcjv1ssvc3bv::::res://sprites/hud/key_icon.png<>res://scripts/hud/key.gd<>uid://bif02s2k5by20::::res://fonts/Retro Gaming.ttf
 ::res://scenes/vfx/::1698575845
 trail.tscn::PackedScene::91188754323575949::1698744955::0::1::::<><>::res://scripts/vfx/trail.gd
 ::res://scenes/weapons/::1698557703
@@ -24,10 +24,11 @@ machine_gun.tscn::PackedScene::8256443228292986449::1698744955::0::1::::<><>::re
 rocket_launcher.tscn::PackedScene::959886999576772184::1698744955::0::1::::<><>::res://scripts/weapons/rocket_launcher.gd<>uid://b07uqhly42odu
 shotgun.tscn::PackedScene::4674807083057539576::1698799253::0::1::::<><>::res://scripts/weapons/shotgun.gd<>uid://bsk7h4axcbikv
 super_shotgun.tscn::PackedScene::1531079316502690337::1698799253::0::1::::<><>::res://scripts/weapons/super_shotgun.gd<>uid://86281bi0re6m
-::res://scenes/weapons/bullets/::1698575845
-light_round.tscn::PackedScene::4387955718715951740::1698961639::0::1::::<><>::res://scripts/weapons/bullets/light_round.gd<>uid://c5jovxmppyecs::::res://sprites/weapons/bullets/pellet_sprite.png<>uid://cym6sqiwdcxpw::::res://scenes/components/damager_component.tscn<>uid://bkf4oqcrm8n6::::res://scenes/vfx/trail.tscn
+::res://scenes/weapons/bullets/::1699017576
+light_round.tscn::PackedScene::4387955718715951740::1699016800::0::1::::<><>::res://scripts/weapons/bullets/light_round.gd<>uid://c5jovxmppyecs::::res://sprites/weapons/bullets/pellet_sprite.png<>uid://cym6sqiwdcxpw::::res://scenes/components/damager_component.tscn<>uid://bkf4oqcrm8n6::::res://scenes/vfx/trail.tscn
+fire_ball.tscn::PackedScene::2955591727483763919::1699017917::0::1::::<><>::res://scripts/weapons/bullets/fire_ball.gd<>uid://cym6sqiwdcxpw::::res://scenes/components/damager_component.tscn
 rocket.tscn::PackedScene::4208445161118212122::1698557297::0::1::::<><>::res://scripts/weapons/bullets/rocket.gd<>uid://b5a4s0ktdiwbe
-shotgun_pellet.tscn::PackedScene::4243847513277497629::1698961639::0::1::::<><>::res://scripts/weapons/bullets/shotgun_pellet.gd<>uid://c5jovxmppyecs::::res://sprites/weapons/bullets/pellet_sprite.png<>uid://bkf4oqcrm8n6::::res://scenes/vfx/trail.tscn<>uid://cym6sqiwdcxpw::::res://scenes/components/damager_component.tscn
+shotgun_pellet.tscn::PackedScene::4243847513277497629::1699016799::0::1::::<><>::res://scripts/weapons/bullets/shotgun_pellet.gd<>uid://c5jovxmppyecs::::res://sprites/weapons/bullets/pellet_sprite.png<>uid://bkf4oqcrm8n6::::res://scenes/vfx/trail.tscn<>uid://cym6sqiwdcxpw::::res://scenes/components/damager_component.tscn
 ::res://scripts/::1698748002
 ::res://scripts/autoload/::1698485557
 player_globals.gd::GDScript::-1::1698472598::0::1::::<>Node<>::
@@ -55,8 +56,9 @@ rocket_launcher.gd::GDScript::-1::1698796542::0::1::::RocketLauncher<>Weapon<>::
 shotgun.gd::GDScript::-1::1698796676::0::1::::<>Weapon<>::
 super_shotgun.gd::GDScript::-1::1698796670::0::1::::<>Weapon<>::
 weapon.gd::GDScript::-1::1698796801::0::1::::Weapon<>Node2D<>::
-::res://scripts/weapons/bullets/::1698554902
+::res://scripts/weapons/bullets/::1699017637
 light_round.gd::GDScript::-1::1698806302::0::1::::LightRound<>Node2D<>::
+fire_ball.gd::GDScript::-1::1699017718::0::1::::FireBall<>Node2D<>::
 rocket.gd::GDScript::-1::1698556674::0::1::::Rocket<>Node2D<>::
 shotgun_pellet.gd::GDScript::-1::1698799200::0::1::::ShotgunPellet<>Node2D<>::
 ::res://script_templates/::1698485557
@@ -64,17 +66,15 @@ shotgun_pellet.gd::GDScript::-1::1698799200::0::1::::ShotgunPellet<>Node2D<>::
 state_template.gd::GDScript::-1::1698472598::0::1::::<>State<>::
 ::res://shaders/::1698962405
 ::res://shaders/utilities/::1698962419
-mask.gdshader::Shader::-1::1698963397::0::1::::<><>::
+mask.gdshader::Shader::-1::1699017917::0::1::::<><>::
 ::res://sprites/::1698779242
-::res://sprites/enemies/::1698747921
+::res://sprites/enemies/::1699017018
+eevil_sprite.png::CompressedTexture2D::2564179182020843760::1699017018::1699017018::1::::<><>::
 soldier_sprite.png::CompressedTexture2D::677753962283945140::1698747920::1698747921::1::::<><>::
-::res://sprites/hud/::1698964232
+::res://sprites/hud/::1698964263
 key_container.png::CompressedTexture2D::2191177316504711262::1698741439::1698741442::1::::<><>::
 key_icon.png::CompressedTexture2D::8637941871852598727::1698738493::1698739482::1::::<><>::
 lifejar_blood.png::CompressedTexture2D::7180757428924624447::1698578538::1698964233::1::::<><>::
-lifejar_blood_0001.png::CompressedTexture2D::8612937250704639485::1698963945::1698963947::1::::<><>::
-lifejar_blood_0002.png::CompressedTexture2D::2490031895845161096::1698963945::1698963947::1::::<><>::
-lifejar_blood_0003.png::CompressedTexture2D::5590981378240074045::1698963945::1698963947::1::::<><>::
 lifejar_container.png::CompressedTexture2D::5964590980043216410::1698578525::1698578541::1::::<><>::
 lifejar_shadow.png::CompressedTexture2D::7031188456273637377::1698580131::1698962603::1::::<><>::
 ::res://sprites/player/::1698485557
@@ -87,6 +87,7 @@ machine_gun_sprite.png::CompressedTexture2D::5081521602337023090::1698474824::16
 one_killer_sprite.png::CompressedTexture2D::8359401583074034318::1698474824::1698474825::1::::<><>::
 shotgun.png::CompressedTexture2D::3672420615269033361::1698474824::1698474825::1::::<><>::
 super_shotgun_sprtie.png::CompressedTexture2D::2381927207983951634::1698558292::1698558294::1::::<><>::
-::res://sprites/weapons/bullets/::1698555639
+::res://sprites/weapons/bullets/::1699017938
+fireball.png::CompressedTexture2D::879139108197747748::1699017938::1699017938::1::::<><>::
 pellet_sprite.png::CompressedTexture2D::6897974843161675638::1698474832::1698480441::1::::<><>::
 rocket_spritesheet.png::CompressedTexture2D::4493880259314007886::1698555625::1698555639::1::::<><>::

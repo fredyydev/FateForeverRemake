@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dor35qqshr1mu"]
+[gd_scene load_steps=8 format=3 uid="uid://dor35qqshr1mu"]
 
 [ext_resource type="Texture2D" uid="uid://cpk44yodonpvn" path="res://sprites/tilemap/debug_tiles.png" id="1_f7ywr"]
 [ext_resource type="PackedScene" uid="uid://cobeunec838cr" path="res://scenes/player/player.tscn" id="1_obxcj"]
+[ext_resource type="PackedScene" uid="uid://dqn4qpyv5fcsr" path="res://scenes/enemies/imp.tscn" id="4_cq5a2"]
 [ext_resource type="PackedScene" uid="uid://cf2dk7bfuxkhq" path="res://scenes/enemies/soldier.tscn" id="5_1s75a"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1nyw4"]
@@ -45,3 +46,12 @@ position = Vector2(437, 670)
 
 [node name="Soldier4" parent="." instance=ExtResource("5_1s75a")]
 position = Vector2(860, 619)
+
+[node name="Soldier5" parent="." instance=ExtResource("4_cq5a2")]
+position = Vector2(-280, 455)
+
+[node name="Soldier6" parent="." instance=ExtResource("4_cq5a2")]
+position = Vector2(156, 610)
+
+[node name="Soldier7" parent="." instance=ExtResource("4_cq5a2")]
+position = Vector2(664, 465)
