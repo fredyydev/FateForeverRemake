@@ -44,14 +44,5 @@ position = Vector2(471, 337)
 [node name="Soldier3" parent="." instance=ExtResource("5_1s75a")]
 position = Vector2(437, 670)
 
-[node name="Soldier4" parent="." instance=ExtResource("5_1s75a")]
-position = Vector2(860, 619)
-
 [node name="Soldier5" parent="." instance=ExtResource("4_cq5a2")]
 position = Vector2(-280, 455)
-
-[node name="Soldier6" parent="." instance=ExtResource("4_cq5a2")]
-position = Vector2(156, 610)
-
-[node name="Soldier7" parent="." instance=ExtResource("4_cq5a2")]
-position = Vector2(664, 465)

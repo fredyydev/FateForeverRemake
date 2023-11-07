@@ -92,7 +92,7 @@ func on_physics_update(_delta):
 	soldier.stagger()
 "
 
-[node name="Soldier" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Imp" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 16
 collision_mask = 17
 motion_mode = 1
